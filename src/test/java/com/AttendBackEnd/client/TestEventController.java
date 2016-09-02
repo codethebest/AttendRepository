@@ -26,7 +26,7 @@ public class TestEventController extends AbstractTestNGSpringContextTests{
     @Test
     public void testCreate() throws Exception
     {
-        String URL = "http://localhost:8080/api/event";
+        String URL = "attend-mdjansen.rhcloud.com/api/event";
         RestTemplate restTemplate = new RestTemplate();
         Event event = EventFactory.getEvent("#Ziyawa","Rands Club","Randslala");
         restTemplate.postForObject(URL,event, Event.class);
@@ -34,7 +34,7 @@ public class TestEventController extends AbstractTestNGSpringContextTests{
     @Test
     public void testFindById() throws Exception
     {
-        String URL = "http://localhost:8080/api/event/{id}";
+        String URL = "attend-mdjansen.rhcloud.com/api/event/{id}";
         RestTemplate restTemplate = new RestTemplate();
         Event event = restTemplate.getForObject(URL,Event.class,"9");
         Assert.assertNotNull(event);
@@ -44,11 +44,11 @@ public class TestEventController extends AbstractTestNGSpringContextTests{
 
     @Test
     public void testUpdate(){
-        String URI =  "http://localhost:8080/api/event/{id}";
+        String URI =  "attend-mdjansen.rhcloud.com/api/event/{id}";
         RestTemplate restTemplate = new RestTemplate();
         Event event = restTemplate.getForObject(URI, Event.class, "8");
         if(event != null) {
-            String UPDATE_URI = "http://localhost:8080/api/event";
+            String UPDATE_URI = "attend-mdjansen.rhcloud.com/api/event";
             Event updateEvent = new Event.Builder()
                     .copy(event)
                     .host("Club808")
@@ -61,14 +61,14 @@ public class TestEventController extends AbstractTestNGSpringContextTests{
     }
     @Test
     public void testFindAll(){
-        String URI =  "http://localhost:8080/api/event";
+        String URI =  "attend-mdjansen.rhcloud.com/api/event";
         RestTemplate restTemplate = new RestTemplate();
         Set busSet = restTemplate.getForObject(URI,Set.class);
         Assert.assertTrue(busSet.size()>0);
     }
     @Test
     public void testDelete(){
-      String URI =  "http://localhost:8080/api/event/{id}";
+      String URI =  "attend-mdjansen.rhcloud.com/api/event/{id}";
         RestTemplate restTemplate = new RestTemplate();
         restTemplate.delete(URI,"8");
         Event event= restTemplate.getForObject(URI, Event.class, "8");
